@@ -10,9 +10,7 @@
  */
 angular.module('firstClassApp', [
     'ngAnimate',
-    'ngAria',
     'ngCookies',
-    'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',
@@ -21,3 +19,17 @@ angular.module('firstClassApp', [
     'firebase.utils',
     'simpleLogin'
   ]);
+
+// angular.module('firstClassApp', [
+//     'ngAnimate',
+//     'ngAria',
+//     'ngCookies',
+//     'ngMessages',
+//     'ngResource',
+//     'ngRoute',
+//     'ngSanitize',
+//     'ngTouch',
+//     'firebase',
+//     'firebase.utils',
+//     'simpleLogin'
+//   ]);
