@@ -71,6 +71,11 @@ angular.module('firstClassApp')
         templateUrl: 'views/account.html',
         controller: 'AccountCtrl'
       })
+      
+      .whenAuthenticated('/scout-detail', {
+        templateUrl: 'views/scout-detail.html',
+        controller: 'ScoutDetailCtrl'
+      })
 
       .otherwise({redirectTo: '/'});
   }])

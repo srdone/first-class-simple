@@ -1,0 +1,24 @@
+<div class="scout-summary container">
+    <div class="row">
+      <!-- Scout Image -->
+      <div class="col-xs-5 col-md-2">
+        <div class="well-sm">
+          <img src="" height="150" width="150">
+        </div>
+       </div>
+       
+       <!-- Scout Summary Data -->
+       <div class="col-xs-7 col-md-4">
+      <h3>{{scout.firstName + ' ' + scout.lastName}}</h3>
+          <ul class="list-inline">
+            <li>Rank: {{scout.currentRank}}</li>
+            <li>Patrol: {{scout.currentPatrol}}</li>
+            <li>{{scout.currentPosition}}</li>
+            <li ng-hide="!scout.OA">OA Member</li>
+            <li><span class="badge">{{scout.monthsInPosition}}</span> Months of Leadership</li>
+            <li><span class="badge">{{scout.daysOfCamping}}</span> Days of Camping</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</div>
