@@ -2,7 +2,7 @@
 
 angular.module('firstClassApp').factory('ScoutService', function(dateService) {
   var Scout = function(firstName, lastName, currentPatrol, isOA, completedReqs,
-      positionHistory, campingHistory) {
+      positionHistory, campingHistory, serviceHistory) {
     this.firstName = firstName || '';
     this.lastName = lastName || '';
     this.currentPatrol = currentPatrol || '';
@@ -10,6 +10,7 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService) {
     this.completedReqs = completedReqs || [];
     this.positionHistory = positionHistory || [];
     this.campingHistory = campingHistory || [];
+    this.serviceHistory = serviceHistory || [];
   };
   Scout.prototype.currentRank = function() {
       return 'Eagle';
@@ -29,7 +30,10 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService) {
     return 6;
   };
   Scout.prototype.hoursOfService = function() {
-    return 10;
+    var totalHrs = this.serviceHistory.reduce(function(previous, current) {
+      return previous += current.hours;
+    }, 0);
+    return totalHrs;
   };
   Scout.prototype.daysOfCamping = function() {
     return 20;
@@ -44,11 +48,21 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService) {
     this.end = end || null;
   };
   
+  var Service = function (desc, hours) {
+    this.desc = desc;
+    this.hours = hours;
+  };
+  
   var scout = new Scout('Stephen', 'Done', 'Owl Patrol', true);
   scout.positionHistory = [
     new Position('WebMaster', 'Jan 1, 2013', 'Dec 31, 2013'),
     new Position('Patrol Leader', 'Jan 1, 2014', 'Sep 5, 2014'),
     new Position('Senior Patrol Leader', 'Dec 12, 2014')
+  ];
+  scout.serviceHistory = [
+    new Service('Cleaning the park', 2),
+    new Service('Painting the church', 1),
+    new Service('Cleaning the ditches', 0.5)
   ];
   
   return scout;
