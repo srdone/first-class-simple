@@ -12,12 +12,28 @@ angular.module('firstClassApp')
     $scope.scout = {
       firstName: 'Stephen',
       lastName: 'Done',
-      currentRank: 'Eagle',
+      isOA: false,
+      completedReqs: [],
       currentPatrol: 'Owl Patrol',
-      currentPosition : 'Senior Patrol Leader',
-      isOA : true,
-      monthsInPosition: 6,
-      hoursOfService: 10,
-      daysOfCamping: 20
+      positionHistory: [],
+      campingHistory: []
+    };
+    $scope.scout.currentRank = function() {
+      return 'Eagle';
+    };
+    $scope.scout.currentPosition = function() {
+      return 'Senior Patrol Leader';
+    };
+    $scope.scout.monthsInPosition = function() {
+      return 6;
+    };
+    $scope.scout.hoursOfService = function() {
+      return 10;
+    };
+    $scope.scout.daysOfCamping = function() {
+      return 20;
+    };
+    $scope.scout.OAQualified = function() {
+      return false;
     };
   });
