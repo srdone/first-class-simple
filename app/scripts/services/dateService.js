@@ -2,10 +2,10 @@
 
 angular.module('firstClassApp').factory('dateService', function() {
 
-  // Source: http://stackoverflow.com/questions/497790
+  // Source for convert, compare, inRange functions: http://stackoverflow.com/questions/497790
   // Modified slightly to treat null as the current date
   var dateUtil = {
-    convert:function(d) {
+    convert: function(d) {
         // Converts the date in d to a date-object. The input can be:
         //   a date object: returned without modification
         //  an array      : Interpreted as [year,month,day]. NOTE: month is 0-11.
@@ -25,7 +25,7 @@ angular.module('firstClassApp').factory('dateService', function() {
             NaN
         );
     },
-    compare:function(a,b) {
+    compare: function(a,b) {
         // Compare two dates (could be of any type supported by the convert
         // function above) and returns:
         //  -1 : if a < b
@@ -40,7 +40,7 @@ angular.module('firstClassApp').factory('dateService', function() {
             NaN
         );
     },
-    inRange:function(d,start,end) {
+    inRange: function(d,start,end) {
         // Checks if date in d is between dates in start and end.
         // Returns a boolean or NaN:
         //    true  : if d is between start and end (inclusive)
@@ -54,7 +54,14 @@ angular.module('firstClassApp').factory('dateService', function() {
             start <= d && d <= end :
             NaN
         );
-    }
+    },
+    diff: function(a, b) {
+      // Counts the number of consecutive nights between two dates
+      // Allows the dates to be entered in any order - gives positive all the time
+      var dDiff = (this.convert(a) - this.convert(b)) / (1000 * 60 * 60 * 24);
+      var nights = Math.abs(Math.floor(dDiff));
+      return nights;
+    },
   };
   
   return dateUtil;
