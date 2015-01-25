@@ -27,6 +27,7 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService) {
     return currentPositions;
   };
   Scout.prototype.monthsInPosition = function() {
+    dateService.totalMonths(this.currentPositions());
     return 6;
   };
   Scout.prototype.hoursOfService = function() {
