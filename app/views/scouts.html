@@ -13,10 +13,10 @@
           <ul class="list-inline">
             <li>Rank: {{scout.currentRank()}}</li>
             <li>Patrol: {{scout.currentPatrol}}</li>
-            <li ng-repeat="position in scout.currentPositions()">{{position}}</li>
+            <li ng-repeat="position in scout.currentPositions()">{{position.title}}</li>
             <li ng-hide="!scout.isOA">OA Member</li>
             <li ng-hide="!scout.isOA && !scout.OAQualified()">OA Qualified</li>
-            <li><span class="badge">{{scout.monthsInPosition() || 0}}</span> Months in Position</li>
+            <li ng-hide="!(scout.currentPositions() > 0)"><span class="badge">{{scout.monthsInPosition() || 0}}</span> Months in Position</li>
             <li><span class="badge">{{scout.qualifiedNightsOfCamping()}}</span> Qualified Nights of Camping</li>
             <li><span class="badge">{{scout.hoursOfService()}}</span> Hours of Service</li>
           </ul>

@@ -3,7 +3,6 @@
 angular.module('firstClassApp').factory('dateService', function() {
 
   // Source for convert, compare, inRange functions: http://stackoverflow.com/questions/497790
-  // Modified slightly to treat null as the current date
   var dateUtil = {
     convert: function(d) {
         // Converts the date in d to a date-object. The input can be:
@@ -15,7 +14,6 @@ angular.module('firstClassApp').factory('dateService', function() {
         //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
         //  an object     : Interpreted as an object with year, month and date
         //                  attributes.  **NOTE** month is 0-11.
-        d = d || new Date(); // substitute current date for null values
         return (
             d.constructor === Date ? d :
             d.constructor === Array ? new Date(d[0],d[1],d[2]) :
@@ -63,6 +61,7 @@ angular.module('firstClassApp').factory('dateService', function() {
       return nights;
     },
     totalMonths: function(arr) {
+      console.log(arr);
       arr.sort(function (a, b) {
         if (this.compare(a.start, b.start) === -1 ||
             (this.compare(a.start, b.start) === 0 &&

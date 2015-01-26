@@ -10,5 +10,6 @@
 angular.module('firstClassApp')
   .controller('ScoutsCtrl', function ($scope, ScoutService) {
     var scouts = ScoutService.getScouts();
+    
     $scope.scouts = scouts;
   });

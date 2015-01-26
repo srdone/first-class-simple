@@ -19,17 +19,23 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
   Scout.prototype.currentPositions = function(date) {
     var currentPos = [];
     var currentDate = date || new Date();
-    var hist = this._positionHistory; //make the ref shorter
-    for (var i = 0; i < hist.length; i++) {
-      if (dateService.inRange(currentDate, hist[i].start, hist[i].end)) {
-        currentPos.push(hist[i].title);
+    for (var i = 0; i < this._positionHistory.length; i++) {
+      if (!this._positionHistory[i].end) {
+        currentPos.push(this._positionHistory[i]);
+      } else if (dateService.inRange(currentDate, this._positionHistory[i].start,
+                                           this._positionHistory[i].end)) {
+        currentPos.push(this._positionHistory[i]);
       }
     }
     return currentPos;
   };
   Scout.prototype.monthsInPosition = function() {
-    var mos = dateService.totalMonths(this.currentPositions());
-    return mos;
+    var currPos = this.currentPositions();
+    if (currPos.length > 0) {
+      return dateService.totalMonths(currPos);
+    } else {
+      return 0;
+    }
   };
   Scout.prototype.hoursOfService = function() {
     var totalHrs = this._serviceHistory.reduce(function(previous, current) {
@@ -115,8 +121,8 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
   var Position = function (title, start, end) {
     this.id = UtilService.createUUID();
     this.title = title || '';
-    this.start = start || null;
-    this.end = end || null;
+    this.start = dateService.convert(start);
+    this.end = !end ? null : dateService.convert(end);
   };
   
   var Service = function (desc, hours) {
@@ -128,8 +134,8 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
   var Camping = function (desc, start, end) {
     this.id = UtilService.createUUID();
     this.desc = desc;
-    this.start = start;
-    this.end = end;
+    this.start = dateService.convert(start);
+    this.end = dateService.convert(end);
   };
   
   var scouts = {};
