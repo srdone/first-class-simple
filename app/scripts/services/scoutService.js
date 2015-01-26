@@ -168,6 +168,7 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
   
   return {
     createScout: function (firstName, lastName) {
+      console.log('in service create');
       var scout = new Scout(firstName, lastName);
       scouts[scout.id] = scout;
       return scout;

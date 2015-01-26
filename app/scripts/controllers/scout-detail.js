@@ -12,4 +12,11 @@ angular.module('firstClassApp')
     var scout = ScoutService.getScoutById($routeParams.scoutId);
     
     $scope.scout = scout;
+    
+    $scope.createScout = function (firstName, lastName) {
+      console.log('in controller create');
+      ScoutService.createScout(firstName, lastName);
+    };
+    
+    $scope.createMode = false;
   });
