@@ -172,7 +172,7 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
       scouts[scout.id] = scout;
       return scout;
     },
-    getScout: function (id) {
+    getScoutById: function (id) {
       return scouts[id];
     },
     getScouts: function() {
