@@ -8,6 +8,7 @@
  * Controller of the firstClassApp
  */
 angular.module('firstClassApp')
-  .controller('ScoutDetailCtrl', function ($scope, ScoutService) {
-    $scope.scout = ScoutService;
+  .controller('ScoutsCtrl', function ($scope, ScoutService) {
+    var scouts = ScoutService.getScouts();
+    $scope.scouts = scouts;
   });
