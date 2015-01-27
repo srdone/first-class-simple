@@ -82,14 +82,15 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
     }
     return currentPos;
   };
-  Scout.prototype.monthsInPosition = function() {
-    var currPos = this.currentPositions();
-    if (currPos.length > 0) {
-      return dateService.totalMonths(currPos);
-    } else {
-      return 0;
-    }
-  };
+  /**
+  * @ngdoc function
+  * @name firstClassApp.ScoutService.Scout.prototype.hoursOfService
+  * @description
+  * # Scout.prototype.hoursOfService
+  * Returns the total hours of service based on _serviceHistory
+  *
+  * @returns {Number} Total number of hours of service
+  */
   Scout.prototype.hoursOfService = function() {
     var totalHrs = this._serviceHistory.reduce(function(previous, current) {
       return previous += current.hours;
@@ -176,6 +177,22 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
     this.title = title || '';
     this.start = dateService.convert(start);
     this.end = !end ? null : dateService.convert(end);
+  };
+  /**
+  * @ngdoc function
+  * @name firstClassApp.ScoutService.Scout.prototype.monthsInPostition
+  * @description
+  * # Scout.prototype.monthsInPosition
+  * Takes the internal _positionHistory calculates the number of months
+  * the scout has held the current position. Months is based on 30 day months.
+  * Treats null end dates as the current date. Rounds down to most recent month
+  *
+  * @returns {Number} Number of months rounded to nearest whole number
+  */
+  Position.prototype.monthsInPosition = function() {
+    var start = this.start;
+    var end = this.end || new Date(); // replaces null end date with current date.
+    return Math.floor((end - start) / ( 1000 * 60 * 60 * 24 * 30 ));
   };
   
   var Service = function (desc, hours) {

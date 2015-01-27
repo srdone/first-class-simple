@@ -10,7 +10,7 @@
 angular.module('firstClassApp')
   .controller('TroopCtrl', function ($scope, ScoutService) {
     var scouts = ScoutService.getScouts();
-    
+    console.log(scouts);
     $scope.scouts = scouts;
     
     $scope.createScout = function (firstName, lastName) {

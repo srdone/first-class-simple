@@ -14,7 +14,6 @@ angular.module('firstClassApp').factory('dateService', function() {
         //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
         //  an object     : Interpreted as an object with year, month and date
         //                  attributes.  **NOTE** month is 0-11.
-        d = d || new Date();
         return (
             d.constructor === Date ? d :
             d.constructor === Array ? new Date(d[0],d[1],d[2]) :
@@ -60,35 +59,37 @@ angular.module('firstClassApp').factory('dateService', function() {
       var dDiff = (this.convert(a) - this.convert(b)) / (1000 * 60 * 60 * 24);
       var nights = Math.abs(Math.floor(dDiff));
       return nights;
-    },
-    totalMonths: function(arr) {
-      console.log(arr);
-      arr.sort(function (a, b) {
-        if (this.compare(a.start, b.start) === -1 ||
-            (this.compare(a.start, b.start) === 0 &&
-            this.compare(a.end, b.end) === -1)) {
-          return -1;     
-        } else if ((this.compare(a.start, b.start) === 0 &&
-                    this.compare(a.end, b.end) === 1) ||
-                    this.compare(a.start, b.start) === 1)  {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      var total = arr.reduce(function (prior, current) {
-        if (prior.firstDate >= current.start) {
-          prior.secondDate = current.end;
-        } else {
-          prior.total += (prior.secondDate - prior.firstDate);
-          prior.firstDate = current.start;
-          prior.secondDate = current.end;
-        }
-        return prior;
-      }, {firstDate: arr[0].start, secondDate: arr[0].end, total: 0});
-      return total.total;
     }
   };
+// This may no longer be necessary --- commenting out for now
+//     totalMonths: function(arr) {
+//       console.log(arr);
+//       arr.sort(function (a, b) {
+//         if (this.compare(a.start, b.start) === -1 ||
+//             (this.compare(a.start, b.start) === 0 &&
+//             this.compare(a.end, b.end) === -1)) {
+//           return -1;     
+//         } else if ((this.compare(a.start, b.start) === 0 &&
+//                     this.compare(a.end, b.end) === 1) ||
+//                     this.compare(a.start, b.start) === 1)  {
+//           return 1;
+//         } else {
+//           return 0;
+//         }
+//       });
+//       var total = arr.reduce(function (prior, current) {
+//         if (prior.firstDate >= current.start) {
+//           prior.secondDate = current.end;
+//         } else {
+//           prior.total += (prior.secondDate - prior.firstDate);
+//           prior.firstDate = current.start;
+//           prior.secondDate = current.end;
+//         }
+//         return prior;
+//       }, {firstDate: arr[0].start, secondDate: arr[0].end, total: 0});
+//       return total.total;
+//     }
+//   };
   
   return dateUtil;
 });
