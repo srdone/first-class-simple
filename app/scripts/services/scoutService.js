@@ -1,6 +1,39 @@
 'use strict';
 
+/**
+  * @ngdoc function
+  * @name firstClassApp.factory:ScoutService
+  * @description
+  * # ScoutService
+  * Handles database interaction with scout data - controlling access to scout
+  * information and handles troop level modifications and access.
+  * 
+  * Contains all the definitions for a Scout object along with methods on the scout
+  * prototype.
+  * 
+  * @requires RequirementService, dateService, UtilService
+  */
 angular.module('firstClassApp').factory('ScoutService', function(dateService, UtilService) {
+  /**
+  * @ngdoc function
+  * @name firstClassApp.ScoutService.Scout
+  * @description
+  * # Scout object
+  *
+  * All parameters are optional
+  * Creates a new scout with various parameters
+  * 
+  * @param {String} firstName First name of scout
+  * @param {String} lastName Last name of scout
+  * @param {String} currentPatrol Title of the current patrol
+  * @param {boolean} isOA Whether the scout is a member of the Order of the Arrow
+  * @param {Array<Requirement>} completedReqs A list of all the requirements a scout has completed
+  * @param {Array<Position>} positionHistory A list of positions the scout has held in the troop
+  * @param {Array<Camping>} campingHistory A list of campouts the scout has attended
+  * @param {Array<Service>} serviceHistory A list of service projects the scout has participated in.
+  *
+  * @returns {Scout} A scout object
+  */
   var Scout = function(firstName, lastName, currentPatrol, isOA, completedReqs,
       positionHistory, campingHistory, serviceHistory) {
     this.id = UtilService.createUUID();
@@ -13,9 +46,29 @@ angular.module('firstClassApp').factory('ScoutService', function(dateService, Ut
     this._campingHistory = campingHistory || [];
     this._serviceHistory = serviceHistory || [];
   };
+  /**
+  * @ngdoc function
+  * @name firstClassApp.ScoutService.Scout.prototype.currentRank
+  * @description
+  * # Scout.prototype.currentRank
+  * 
+  * @returns {String} The current rank held by the scout
+  */
   Scout.prototype.currentRank = function() {
       return 'Eagle';
   };
+  /**
+  * @ngdoc function
+  * @name firstClassApp.ScoutService.Scout.prototype.currentPositions
+  * @description
+  * # Scout.prototype.currentPositions
+  * Takes the private variable _positionHistory and compares the dates of the
+  * history to the date provided and returns a list of positions that the scout held
+  * on that date.
+  *
+  * @param {Date} date The date to compare positions against
+  * @returns {Array<Position>} Array of positions the Scout currently holds
+  */
   Scout.prototype.currentPositions = function(date) {
     var currentPos = [];
     var currentDate = date || new Date();

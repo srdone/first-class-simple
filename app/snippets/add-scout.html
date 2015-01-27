@@ -1,0 +1,19 @@
+<button class="btn btn-default" ng-click="createMode = true" ng-hide="createMode">Add Scout</button>
+
+<div class="row" ng-show="createMode" ng-cloak>
+  <form role="form">
+    <p class="form-group">
+      <label for="firstName">First Name</label>
+      <input id="firstName" required name="firstName" type="text" ng-model="new.firstName" class="form-control" />
+    </p>
+    <p class="form-group">
+      <label for="lastName">Last Name</label>
+      <input id="lastName" required name="lastName" type="text" ng-model="new.lastName" class="form-control" />
+    </p>
+
+    <p>
+      <button  class="btn btn-primary" ng-show="createMode" ng-click="createScout(new.firstName, new.lastName)">Create Scout</button>
+      <button  class="btn btn-default" ng-cloak ng-show="createMode" ng-click="createMode = false">Cancel</button>
+    </p>
+  </form>
+</div>

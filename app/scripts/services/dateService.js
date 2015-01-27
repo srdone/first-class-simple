@@ -14,6 +14,7 @@ angular.module('firstClassApp').factory('dateService', function() {
         //                  "YYYY/MM/DD", "MM/DD/YYYY", "Jan 31 2009" etc.
         //  an object     : Interpreted as an object with year, month and date
         //                  attributes.  **NOTE** month is 0-11.
+        d = d || new Date();
         return (
             d.constructor === Date ? d :
             d.constructor === Array ? new Date(d[0],d[1],d[2]) :
