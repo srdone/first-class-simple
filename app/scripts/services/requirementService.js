@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('firstClassApp').factory('requirements', function() {
+angular.module('firstClassApp').factory('requirementService', function() {
   var masterReqList = [
     {},
     {},

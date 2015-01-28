@@ -10,8 +10,8 @@
  * Provides methods to update the scout information.
  */
 angular.module('firstClassApp')
-  .controller('ScoutDetailCtrl', function ($scope, $routeParams, ScoutService) {
-    var scout = ScoutService.getScoutById($routeParams.scoutId);
+  .controller('ScoutDetailCtrl', function ($scope, $routeParams, scoutDataService) {
+    var scout = scoutDataService.getScoutById($routeParams.scoutId);
     
     $scope.scout = scout;
     

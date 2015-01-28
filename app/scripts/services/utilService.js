@@ -1,7 +1,7 @@
 /*jshint bitwise: false*/
 'use strict';
 
-angular.module('firstClassApp').factory('UtilService', function() {
+angular.module('firstClassApp').factory('utilService', function() {
   var utilities = {
     createUUID: function () {
       // http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
