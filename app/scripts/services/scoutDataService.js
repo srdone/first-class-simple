@@ -8,7 +8,7 @@
   * Handles database interaction with scout data - controlling access to scout
   * information and handles troop level modifications and access.
   * 
-  * @requires RequirementService, dateService, utilService
+  * @requires scoutService
   */
 angular.module('firstClassApp')
   .factory('scoutDataService', function(scoutService) {
