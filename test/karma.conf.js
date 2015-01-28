@@ -23,9 +23,7 @@ module.exports = function(config) {
       'bower_components/firebase/firebase.js',
       'bower_components/angularfire/dist/angularfire.js',
       'bower_components/angular-animate/angular-animate.js',
-      'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-messages/angular-messages.js',
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
@@ -56,7 +54,8 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-jasmine-matchers'
     ],
 
     // Continuous Integration mode
