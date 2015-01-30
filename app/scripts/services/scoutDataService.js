@@ -17,7 +17,7 @@ angular.module('firstClassApp')
   
   var scouts = {};
   
-  var scout = new Scout('Stephen', 'Done', 'Owl Patrol', true);
+  var scout = new Scout('Stephen', 'Done', 'Owl Patrol');
   scout.addPosition('WebMaster', 'Jan 1, 2013', 'Dec 31, 2013');
   scout.addPosition('Patrol Leader', 'Jan 1, 2014', 'Sep 5, 2014');
   scout.addPosition('Senior Patrol Leader', 'Dec 12, 2014');
@@ -31,8 +31,9 @@ angular.module('firstClassApp')
   scout.addCamping('Orange Groves', 'Aug 13, 2014', 'Aug 16, 2014');
   scout.addCamping('Camporee', 'Aug 17, 2014', 'Aug 19, 2014');
   scouts[scout.id] = scout;
+  scout.isOA = true;
   
-  var scout2 = new Scout('Timothy', 'Done', 'Buffalo Patrol', true);
+  var scout2 = new Scout('Timothy', 'Done', 'Buffalo Patrol');
   scout2.addPosition('Patrol Leader', 'Jan 23, 2013', 'Sep 5, 2014');
   scout2.addService('Cleaning the park', 2);
   scout2.addService('Painting the church', 1);

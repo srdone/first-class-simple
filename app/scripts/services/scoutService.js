@@ -31,17 +31,16 @@ angular.module('firstClassApp')
   *
   * @returns {Scout} A scout object
   */
-  var Scout = function(firstName, lastName, currentPatrol, isOA, completedReqs,
-      positionHistory, campingHistory, serviceHistory) {
+  var Scout = function(firstName, lastName, currentPatrol) {
     this.id = utilService.createUUID();
     this.firstName = firstName || '';
     this.lastName = lastName || '';
     this.currentPatrol = currentPatrol || '';
-    this.isOA = isOA || false;
-    this._completedReqs = completedReqs || [];
-    this._positionHistory = positionHistory || [];
-    this._campingHistory = campingHistory || [];
-    this._serviceHistory = serviceHistory || [];
+    this.isOA = false;
+    this._completedReqs = [];
+    this._positionHistory = [];
+    this._campingHistory = [];
+    this._serviceHistory = [];
   };
   /**
   * @ngdoc function
